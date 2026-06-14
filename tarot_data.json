@@ -1,0 +1,35 @@
+{
+  "major_arcana": [
+    {"id": 0, "name": "愚者", "name_en": "The Fool", "upright": "新開始、冒險、天真、自由、自發性", "reversed": "魯莽、冒險過度、不負責任、幼稚", "element": "風", "advice_upright": "放膽去試！呢個時候最適合踏出第一步。", "advice_reversed": "停一停，諗清楚。唔好衝動行事。"},
+    {"id": 1, "name": "魔術師", "name_en": "The Magician", "upright": "創造力、技巧、意志力、資源豐富", "reversed": "欺騙、缺乏方向、才能浪費", "element": "水銀", "advice_upright": "你已經擁有一切你需要嘅工具，相信自己去創造！", "advice_reversed": "唔好浪費你嘅天賦，專注喺一個方向。"},
+    {"id": 2, "name": "女祭司", "name_en": "The High Priestess", "upright": "直覺、潛意識、神秘、內在智慧", "reversed": "忽略直覺、表面化、秘密被揭露", "element": "月", "advice_upright": "聽你嘅直覺，答案已經喺你內心。", "advice_reversed": "唔好只睇表面，深層嘅真相等緊你發現。"},
+    {"id": 3, "name": "皇后", "name_en": "The Empress", "upright": "豐盛、母性、自然、創造力、感官", "reversed": "依賴、過度保護、創意阻塞", "element": "金星", "advice_upright": "好好享受生活中嘅美好事物，豐盛正圍繞住你。", "advice_reversed": "唔好過度付出，都要照顧自己。"},
+    {"id": 4, "name": "皇帝", "name_en": "The Emperor", "upright": "權威、結構、紀律、穩定、領導", "reversed": "專制、僵化、控制慾過強", "element": "白羊", "advice_upright": "建立結構同紀律，你有能力掌控局面。", "advice_reversed": "放鬆啲控制，俾空間俾其他人。"},
+    {"id": 5, "name": "教皇", "name_en": "The Hierophant", "upright": "傳統、精神指引、教育、信仰體系", "reversed": "打破常規、反叛、非傳統", "element": "金牛", "advice_upright": "跟隨傳統智慧，或者尋求導師指引。", "advice_reversed": "唔使一定要跟規矩，相信你自己嘅方式。"},
+    {"id": 6, "name": "戀人", "name_en": "The Lovers", "upright": "愛情、選擇、和諧、價值觀", "reversed": "不和諧、錯誤選擇、溝通不良", "element": "雙子", "advice_upright": "跟隨你嘅心，呢個選擇會定義你嘅未來。", "advice_reversed": "唔好勉強，有啲嘢需要重新對齊。"},
+    {"id": 7, "name": "戰車", "name_en": "The Chariot", "upright": "意志力、勝利、決心、行動", "reversed": "失去方向、缺乏控制、挫折", "element": "巨蟹", "advice_upright": "堅持到底！勝利就喺前面。", "advice_reversed": "停低重整方向，唔好盲目衝。"},
+    {"id": 8, "name": "力量", "name_en": "Strength", "upright": "勇氣、耐心、內在力量、溫柔", "reversed": "軟弱、缺乏自信、自我懷疑", "element": "獅子", "advice_upright": "溫柔但堅定，你嘅內在力量比你諗嘅更強大。", "advice_reversed": "對自己溫柔啲，唔好自我懷疑。"},
+    {"id": 9, "name": "隱者", "name_en": "The Hermit", "upright": "內省、獨處、智慧、尋找答案", "reversed": "孤立、逃避、拒絕指引", "element": "處女", "advice_upright": "花時間獨處思考，答案喺內心搵到。", "advice_reversed": "唔好完全封閉自己，有時需要他人嘅觀點。"},
+    {"id": 10, "name": "命運之輪", "name_en": "Wheel of Fortune", "upright": "好運、轉變、循環、命運", "reversed": "厄運、抗拒改變、週期低谷", "element": "木星", "advice_upright": "好運正降臨！把握呢個轉變嘅時刻。", "advice_reversed": "低潮會過嘅，保持耐心。"},
+    {"id": 11, "name": "正義", "name_en": "Justice", "upright": "公正、真相、因果、法律", "reversed": "不公、逃避責任、偏見", "element": "天秤", "advice_upright": "真相終會浮現，正義會到你嗰邊。", "advice_reversed": "面對現實，唔好逃避責任。"},
+    {"id": 12, "name": "倒吊人", "name_en": "The Hanged Man", "upright": "犧牲、新視角、等待、放下", "reversed": "拖延、抗拒犧牲、停滯", "element": "海王星", "advice_upright": "有時候需要放下先可以獲得，換個角度睇。", "advice_reversed": "唔好無止境�等，有啲嘢需要你行動。"},
+    {"id": 13, "name": "死神", "name_en": "Death", "upright": "結束、轉變、重生、放下舊嘅", "reversed": "抗拒改變、恐懼結束、停滯", "element": "天蠍", "advice_upright": "結束唔係壞事，係為新嘅開始騰出空間。", "advice_reversed": "唔好恐懼改變，擁抱轉變。"},
+    {"id": 14, "name": "節制", "name_en": "Temperance", "upright": "平衡、節制、耐心、調和", "reversed": "失衡、過度、缺乏耐心", "element": "人馬", "advice_upright": "保持平衡，中庸之道係最好嘅選擇。", "advice_reversed": "過猶不及，搵返平衡點。"},
+    {"id": 15, "name": "惡魔", "name_en": "The Devil", "upright": "束縛、慾望、誘惑、陰暗面", "reversed": "解放、打破束縛、覺醒", "element": "山羊", "advice_upright": "小心誘惑，你有可能被某啲嘢束縛住。", "advice_reversed": "你正喺度打破束縛，自由就喺前面！"},
+    {"id": 16, "name": "塔", "name_en": "The Tower", "upright": "突變、崩潰、真相揭露、覺醒", "reversed": "避免災難、恐懼改變、延遲崩潰", "element": "火星", "advice_upright": "舊嘅結構必須倒塌，新嘅先可以建立。", "advice_reversed": "你無法永遠逃避改變。"},
+    {"id": 17, "name": "星星", "name_en": "The Star", "upright": "希望、靈感、祝福、寧靜", "reversed": "失去希望、失望、斷聯", "element": "水瓶", "advice_upright": "希望就喺你身邊，保持信心，好事會降臨。", "advice_reversed": "唔好放棄希望，光明終會來到。"},
+    {"id": 18, "name": "月亮", "name_en": "The Moon", "upright": "幻覺、恐懼、直覺、潛意識", "reversed": "真相浮現、走出迷霧、釋放恐懼", "element": "雙魚", "advice_upright": "小心幻覺同誤解，相信你嘅直覺。", "advice_reversed": "迷霧正在散去，真相即將浮面。"},
+    {"id": 19, "name": "太陽", "name_en": "The Sun", "upright": "成功、快樂、活力、光明", "reversed": "短暫快樂、自我中心、延遲成功", "element": "太陽", "advice_upright": "陽光普照！呢個係最好嘅時刻，盡情享受！", "advice_reversed": "快樂可能短暫，珍惜當下。"},
+    {"id": 20, "name": "審判", "name_en": "Judgement", "upright": "重生、覺醒、內在呼喚、反思", "reversed": "自我懷疑、逃避反思、無法原諒", "element": "冥王星", "advice_upright": "聽從你內心嘅呼喚，重生嘅時刻到了。", "advice_reversed": "唔好逃避自我反思，面對過去先可以向前。"},
+    {"id": 21, "name": "世界", "name_en": "The World", "upright": "完成、成就、圓滿、旅程結束", "reversed": "未完成、延遲結局、缺乏結局", "element": "土星", "advice_upright": "恭喜！你已經完成咗一個重要嘅循環，收穫你嘅成果。", "advice_reversed": "仲差一步就到終點，唔好放棄！"}
+  ],
+  "spreads": {
+    "single": {"name": "單牌", "cards": 1, "description": "快速回答一個問題"},
+    "three_card": {"name": "三牌陣", "cards": 3, "positions": ["過去", "現在", "未來"], "description": "了解事情嘅發展脈絡"},
+    "celtic_cross": {"name": "凱爾特十字", "cards": 10, "positions": ["現況", "挑戰", "根基", "過去", "目標", "未來", "自我", "環境", "希望/恐懼", "結果"], "description": "最全面嘅牌陣，深入分析各個面向"}
+  },
+  "daily_horoscope": {
+    "signs": ["白羊座", "金牛座", "雙子座", "巨蟹座", "獅子座", "處女座", "天秤座", "天蠍座", "人馬座", "山羊座", "水瓶座", "雙魚座"],
+    "elements": {"火": ["白羊座", "獅子座", "人馬座"], "土": ["金牛座", "處女座", "山羊座"], "風": ["雙子座", "天秤座", "水瓶座"], "水": ["巨蟹座", "天蠍座", "雙魚座"]}
+  }
+}
