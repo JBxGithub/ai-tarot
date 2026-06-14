@@ -1,40 +1,40 @@
-# AI 塔羅大師 — 自動化賺錢系統
+# AI 塔羅大師 — WhatsApp 即時算命服務
+
+🔮 AI 塔羅大師 — WhatsApp 直達 AI 算命服務
 
 ## 核心概念
-- WhatsApp 掃碼 → AI 即時塔羅解讀 → 付費升級
+- WhatsApp 掃碼 → AI 即時塔羅解讀 → FPS 付款升級
 - 完全自動化，24/7 運作
 - 粵語/國語雙語
 
 ## 收費模式
-| 層級 | 價格 | 內容 |
+| 層級 | 價格 | 兣容 |
 |------|------|------|
 | 免費 | $0 | 每日一張塔羅 |
-| 單次 | $1 | 一次完整解讀 |
-| 月費 | $4.99/月 | 每日運程 + 無限塔羅 |
-| VIP | $19.99/月 | 全面運程（塔羅+生肖+紫微） |
+| 單次 | HK$8 | 一次完整解讀 |
+| 月費 | HK$38/月 | 每日運程 + 無限塔羅 |
+| VIP | HK$158/月 | 全面運程（塔羅+生肖+紫微） |
+
+## 收款方式
+- **FPS 轉數快**：+852-63931048
+- **USDT/USDC**：Metamask（待提供地址）
+
+## WhatsApp 對口
+- **+852 6360 9349**（呀鬼 Alfred）
+
+## 域名
+- **alfredrpg.net/tarot** → 主域名 path
+- **jbxgithub.github.io/ai-tarot/** → GitHub Pages
 
 ## 技術架構
 - OpenClaw Agent（核心 AI 引擎）
-- WhatsApp Adapter（用戶入口）
-- Stripe Checkout（付費處理）
+- WhatsApp Adapter（用戶入口：+85263609349）
+- FPS 轉數快（付款處理）
 - Cron Job（每日運程推送）
 - PostgreSQL（用戶數據 + 付費記錄）
 
-## 自動化流程
-1. 用戶 WhatsApp 發送「塔羅」→ AI 回覆免費牌
-2. 用戶想深入解讀 → 付費連結
-3. 付費成功 → 解鎖完整運程
-4. 每日 08:00 → 自動推送當日運程（付費用戶）
-
-## 塔羅牌數據
-- 78 張牌（22 大阿爾克那 + 56 小阿爾克那）
-- 正位 + 逆位解讀
-- 3 種排陣：單牌、三牌、凱爾特十字
-
-## 部署
-- 前端：ai.alfredrpg.net（GitHub Pages）
-- 後端：OpenClaw Agent + Cron
-- 付費：Stripe Checkout
-
 ## 啟動日期
 - 2026-06-14：項目啟動
+- 2026-06-14：MVP 網站上線
+- 待定：OpenClaw Agent 塔羅 prompt 設定
+- 待定：WhatsApp 自動回覆流程
