@@ -345,7 +345,7 @@
         <!-- Single -->
         <div class="price-card reveal">
             <div class="price-tier">單次解讀</div>
-            <div class="price-amount"><span class="currency">$</span>1<span class="period">/次</span></div>
+            <div class="price-amount"><span class="currency">HK$</span>8<span class="period">/次</span></div>
             <div class="price-desc">想深問一件事？一次搞掂</div>
             <ul class="price-features">
                 <li>單次深度塔羅解讀</li>
@@ -353,14 +353,14 @@
                 <li>正位逆位詳細解讀</li>
                 <li>行動建議</li>
             </ul>
-            <button class="pay-btn basic" onclick="handleCheckout('price_single')">🔮 即刻算</button>
+            <button class="pay-btn basic" onclick="handleFPS('single')">🔮 即刻算</button>
         </div>
 
         <!-- Monthly -->
         <div class="price-card popular reveal">
             <div class="popular-badge">🔥 最受歡迎</div>
             <div class="price-tier">月費方案</div>
-            <div class="price-amount"><span class="currency">$</span>4.99<span class="period">/月</span></div>
+            <div class="price-amount"><span class="currency">HK$</span>38<span class="period">/月</span></div>
             <div class="price-desc">每日運程 + 無限塔羅</div>
             <ul class="price-features">
                 <li>無限次塔羅解讀</li>
@@ -369,13 +369,13 @@
                 <li>優先回覆</li>
                 <li>歷史記錄保存</li>
             </ul>
-            <button class="pay-btn pro" onclick="handleCheckout('price_monthly')">✨ 訂閱月費</button>
+            <button class="pay-btn pro" onclick="handleFPS('monthly')">✨ 訂閱月費</button>
         </div>
 
         <!-- VIP -->
         <div class="price-card reveal">
             <div class="price-tier">VIP 全面運程</div>
-            <div class="price-amount"><span class="currency">$</span>19.99<span class="period">/月</span></div>
+            <div class="price-amount"><span class="currency">HK$</span>158<span class="period">/月</span></div>
             <div class="price-desc">塔羅 + 生肖 + 紫微斗數，一個價錢包晒</div>
             <ul class="price-features">
                 <li>所有月費功能</li>
@@ -385,7 +385,7 @@
                 <li>專屬 AI 命理顧問</li>
                 <li>VIP 專屬牌陣</li>
             </ul>
-            <button class="pay-btn vip" onclick="handleCheckout('price_vip')">👑 成為 VIP</button>
+            <button class="pay-btn vip" onclick="handleFPS('vip')">👑 成為 VIP</button>
         </div>
     </div>
 </section>
@@ -529,7 +529,7 @@
                 <span class="arrow">▼</span>
             </div>
             <div class="faq-a">
-                我哋支援信用卡、 debit card 同 Apple Pay / Google Pay（透過 Stripe 安全付款）。所有交易都經過 SSL 加密，安全可靠。
+                我哋支援 FPS 轉數快即時過數，即轉即開通，無需信用卡。WhatsApp 發送付款截圖即可，簡單方便。
             </div>
         </div>
     </div>
@@ -554,8 +554,7 @@
     <p style="margin-top:.5rem; color:#665580;">© 2026 AI 塔羅大師. All rights reserved.</p>
 </footer>
 
-<!-- Stripe.js -->
-<script src="https://js.stripe.com/v3/"></script>
+<!-- FPS Payment Logic -->
 
 <script>
     // ===== Generate Stars =====
@@ -667,50 +666,26 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ===== Stripe Checkout =====
-    const STRIPE_PK = 'pk_live_51HP7CBGUdf0olYF3GSgW3CSRX7sBLlfLCb1Q7UIRm2MszBStgToicfjuS3p27yPkVheJC1xH9Vj7w4LZv8KtrHZw00A05KpHdX';
-    const stripe = Stripe(STRIPE_PK);
-
-    // Price IDs - replace with real Stripe price IDs when created
-    const PRICE_MAP = {
-        'price_single': null,   // TODO: Create in Stripe Dashboard
-        'price_monthly': null,  // TODO: Create in Stripe Dashboard
-        'price_vip': null       // TODO: Create in Stripe Dashboard
+    // ===== FPS Payment =====
+    const FPS_PHONE = '+852 6393 1048';
+    const PLANS = {
+        'single': { name: '單次解讀', price: 'HK$8', whatsapp: '我要單次塔羅解讀（HK$8）' },
+        'monthly': { name: '月費方案', price: 'HK$38/月', whatsapp: '我要訂閱月費方案（HK$38/月）' },
+        'vip': { name: 'VIP 全面運程', price: 'HK$158/月', whatsapp: '我要訂閱 VIP 全面運程（HK$158/月）' }
     };
 
-    function handleCheckout(priceKey) {
-        const priceId = PRICE_MAP[priceKey];
+    function handleFPS(planKey) {
+        const plan = PLANS[planKey];
         const msgEl = document.getElementById('checkout-message');
 
-        if (!priceId) {
-            // Fallback: redirect to WhatsApp for manual payment processing
-            const planName = {
-                'price_single': '單次解讀 $1',
-                'price_monthly': '月費方案 $4.99/月',
-                'price_vip': 'VIP 全面運程 $19.99/月'
-            }[priceKey];
+        // Show processing message
+        msgEl.innerHTML = `🔄 正在為你準備 ${plan.name} 付款⋯⋯<br><small>請透過 WhatsApp 完成 FPS 轉數快付款</small>`;
+        msgEl.style.color = '#ffd700';
 
-            msgEl.innerHTML = '⏳ 正在為你準備支付⋯⋯<br>如未自動跳轉，請 WhatsApp 聯絡我們完成付款';
-            msgEl.style.opacity = '0';
-            msgEl.style.opacity = '1';
-
-            setTimeout(() => {
-                window.open(`https://wa.me/85263931048?text=我想訂閱：${encodeURIComponent(planName)}`, '_blank');
-            }, 1500);
-            return;
-        }
-
-        stripe.redirectToCheckout({
-            lineItems: [{ price: priceId, quantity: 1 }],
-            mode: priceKey === 'price_single' ? 'payment' : 'subscription',
-            successUrl: 'https://ai.alfredrpg.net/?paid=1',
-            cancelUrl: 'https://ai.alfredrpg.net/?cancelled=1',
-        }).then(result => {
-            if (result.error) {
-                msgEl.textContent = '❌ ' + result.error.message;
-                msgEl.style.color = '#ff6b6b';
-            }
-        });
+        // Redirect to WhatsApp with payment instructions
+        setTimeout(() => {
+            window.open(`https://wa.me/85263931048?text=${encodeURIComponent(plan.whatsapp + ' — FPS 轉數快付款至 ' + FPS_PHONE)}`, '_blank');
+        }, 800);
     }
 
     // ===== Check URL params =====
