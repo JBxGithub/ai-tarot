@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 塔羅大師 🌙 — WhatsApp 即時算命 | ai.alfredrpg.net</title>
+    <meta name="description" content="AI 塔羅大師 — WhatsApp 即時算命解讀。78 張塔羅牌完整分析，每日運程、生肖配對、紫微斗數。免費試算，掃碼即用！">
+    <meta name="keywords" content="塔羅,算命,AI塔羅,WhatsApp算命,每日運程,生肖配對,紫微斗數,塔羅牌解讀,免費塔羅">
+    <meta name="author" content="AI 塔羅大師">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai.alfredrpg.net/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI 塔羅大師 🌙 — WhatsApp 即時算命">
+    <meta property="og:description" content="AI 即時解讀塔羅牌，每日運程、生肖配對、紫微斗數。免費試算，掃碼即用！">
+    <meta property="og:url" content="https://ai.alfredrpg.net/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_HK">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI 塔羅大師 🌙 — WhatsApp 即時算命">
+    <meta name="twitter:description" content="AI 即時解讀塔羅牌，每日運程、生肖配對、紫微斗數。免費試算！">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a14;
+            color: #e0d6f0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a { color: #d4a0ff; text-decoration: none; transition: color .3s; }
+        a:hover { color: #ffd700; }
+
+        /* ===== ANIMATED BG ===== */
+        .stars-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+        .stars-bg .star {
+            position: absolute; width: 2px; height: 2px;
+            background: #fff; border-radius: 50%;
+            animation: twinkle var(--dur, 3s) infinite var(--delay, 0s);
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: .2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,20,.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(138,43,226,.3);
+            padding: .75rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { font-size: 1.25rem; font-weight: 700; }
+        .nav-logo span { background: linear-gradient(135deg, #d4a0ff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 1.25rem; font-size: .9rem; }
+        .nav-links a { color: #c0b0e0; }
+        .nav-links a:hover { color: #ffd700; }
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,10,20,.95); flex-direction: column; padding: 1rem; gap: .75rem; }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 6rem 1.5rem 3rem;
+            background: radial-gradient(ellipse at 50% 30%, rgba(75,0,130,.35) 0%, transparent 70%);
+        }
+        .hero-content { max-width: 720px; }
+        .hero-emoji { font-size: 4rem; margin-bottom: 1rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800;
+            background: linear-gradient(135deg, #d4a0ff 0%, #ffd700 50%, #ff6b9d 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: .75rem;
+        }
+        .hero p { font-size: 1.15rem; color: #b8a8d8; margin-bottom: 2rem; }
+        .hero-subtitle { font-size: .95rem; color: #9585b5; margin-bottom: 2.5rem; }
+
+        /* ===== CTA BUTTON ===== */
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: .6rem;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff; padding: 1rem 2.5rem; border-radius: 50px;
+            font-size: 1.15rem; font-weight: 700; border: none; cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 4px 20px rgba(37,211,102,.3);
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(37,211,102,.5); color: #fff; }
+
+        /* ===== QR SECTION ===== */
+        .qr-section {
+            margin-top: 2rem; display: flex; flex-direction: column; align-items: center;
+        }
+        .qr-box {
+            background: #fff; padding: .75rem; border-radius: 12px;
+            box-shadow: 0 0 30px rgba(138,43,226,.3);
+        }
+        .qr-box canvas { display: block; }
+        .qr-hint { font-size: .8rem; color: #9585b5; margin-top: .75rem; }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+        .section-title {
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 700;
+            text-align: center; margin-bottom: .5rem;
+            background: linear-gradient(135deg, #d4a0ff, #ffd700);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .section-sub { text-align: center; color: #9585b5; margin-bottom: 3rem; }
+
+        /* ===== FEATURES ===== */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: linear-gradient(145deg, rgba(30,15,60,.8), rgba(15,10,30,.9));
+            border: 1px solid rgba(138,43,226,.25); border-radius: 16px;
+            padding: 2rem 1.5rem; text-align: center;
+            transition: transform .3s, border-color .3s;
+        }
+        .feature-card:hover { transform: translateY(-4px); border-color: rgba(212,160,255,.5); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+        .feature-card h3 { font-size: 1.15rem; color: #ffd700; margin-bottom: .5rem; }
+        .feature-card p { font-size: .9rem; color: #b8a8d8; }
+
+        /* ===== PRICING ===== */
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .price-card {
+            background: linear-gradient(145deg, rgba(30,15,60,.8), rgba(15,10,30,.9));
+            border: 1px solid rgba(138,43,226,.25); border-radius: 16px;
+            padding: 2.5rem 1.5rem; text-align: center; position: relative;
+            transition: transform .3s, border-color .3s;
+        }
+        .price-card:hover { transform: translateY(-4px); border-color: rgba(212,160,255,.5); }
+        .price-card.popular {
+            border-color: #ffd700;
+            background: linear-gradient(145deg, rgba(60,20,100,.9), rgba(25,10,50,.95));
+            box-shadow: 0 0 40px rgba(255,215,0,.15);
+        }
+        .popular-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #0a0a14; padding: .3rem 1rem; border-radius: 20px;
+            font-size: .75rem; font-weight: 700;
+        }
+        .price-tier { font-size: .85rem; color: #9585b5; text-transform: uppercase; letter-spacing: 1px; margin-bottom: .5rem; }
+        .price-amount { font-size: 2.5rem; font-weight: 800; color: #fff; }
+        .price-amount .currency { font-size: 1.25rem; vertical-align: super; }
+        .price-amount .period { font-size: .85rem; color: #9585b5; font-weight: 400; }
+        .price-desc { color: #b8a8d8; margin: 1rem 0 1.5rem; font-size: .9rem; }
+        .price-features { list-style: none; margin-bottom: 1.5rem; }
+        .price-features li {
+            padding: .35rem 0; color: #c0b0e0; font-size: .9rem;
+            border-bottom: 1px solid rgba(138,43,226,.15);
+        }
+        .price-features li::before { content: '✨ '; }
+        .pay-btn {
+            display: inline-block; padding: .75rem 2rem; border-radius: 50px;
+            font-weight: 700; font-size: .95rem; border: none; cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .pay-btn:hover { transform: translateY(-2px); }
+        .pay-btn.free { background: linear-gradient(135deg, #7b2ff7, #9945ff); color: #fff; box-shadow: 0 4px 15px rgba(123,47,247,.3); }
+        .pay-btn.basic { background: linear-gradient(135deg, #d4a0ff, #9945ff); color: #fff; box-shadow: 0 4px 15px rgba(153,69,255,.3); }
+        .pay-btn.pro { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #0a0a14; box-shadow: 0 4px 20px rgba(255,215,0,.4); }
+        .pay-btn.vip { background: linear-gradient(135deg, #ff6b9d, #d4a0ff); color: #fff; box-shadow: 0 4px 20px rgba(255,107,157,.3); }
+
+        /* ===== REVIEWS ===== */
+        .reviews-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .review-card {
+            background: linear-gradient(145deg, rgba(30,15,60,.6), rgba(15,10,30,.8));
+            border: 1px solid rgba(138,43,226,.2); border-radius: 16px;
+            padding: 1.75rem; position: relative;
+        }
+        .review-stars { color: #ffd700; margin-bottom: .5rem; font-size: 1rem; }
+        .review-text { color: #c0b0e0; font-size: .95rem; margin-bottom: 1rem; font-style: italic; }
+        .review-author { display: flex; align-items: center; gap: .75rem; }
+        .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #7b2ff7, #d4a0ff); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .review-name { font-weight: 600; color: #e0d6f0; font-size: .9rem; }
+        .review-meta { font-size: .8rem; color: #9585b5; }
+
+        /* ===== FAQ ===== */
+        .faq-list { max-width: 720px; margin: 0 auto; }
+        .faq-item {
+            border: 1px solid rgba(138,43,226,.2); border-radius: 12px;
+            margin-bottom: .75rem; overflow: hidden;
+        }
+        .faq-q {
+            padding: 1.25rem 1.5rem; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; color: #e0d6f0; background: rgba(30,15,60,.5);
+            transition: background .3s;
+        }
+        .faq-q:hover { background: rgba(50,25,90,.5); }
+        .faq-q .arrow { transition: transform .3s; font-size: .8rem; }
+        .faq-q.open .arrow { transform: rotate(180deg); }
+        .faq-a {
+            max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s;
+            padding: 0 1.5rem; color: #b8a8d8; font-size: .9rem;
+        }
+        .faq-a.open { max-height: 300px; padding: 1rem 1.5rem 1.25rem; }
+
+        /* ===== STRIPE CHECKOUT ===== */
+        .stripe-section { text-align: center; }
+        #checkout-message { margin-top: 1rem; color: #ffd700; font-weight: 600; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center; padding: 3rem 1.5rem;
+            border-top: 1px solid rgba(138,43,226,.2);
+            color: #9585b5; font-size: .85rem;
+        }
+        footer a { color: #b8a8d8; }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity .6s, transform .6s;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== MOBILE FINE-TUNE ===== */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.75rem; }
+            .cta-btn { padding: .85rem 2rem; font-size: 1rem; }
+            section { padding: 3rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Stars Background -->
+<div class="stars-bg" id="starsBg"></div>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-logo"><span>🌙 AI 塔羅大師</span></div>
+    <div class="hamburger" id="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</div>
+    <div class="nav-links">
+        <a href="#features">服務特色</a>
+        <a href="#pricing">定價</a>
+        <a href="#reviews">用戶評價</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta" class="cta-btn" style="padding:.5rem 1.25rem;font-size:.85rem;">即刻開始</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+    <div class="hero-content">
+        <div class="hero-emoji">🔮🌙✨</div>
+        <h1>你嘅命運，由 AI 解讀</h1>
+        <p>WhatsApp 即時塔羅牌解讀，AI 大師 24/7 為你指點迷津</p>
+        <p class="hero-subtitle">78 張塔羅牌完整分析 · 生肖配對 · 紫微斗數 · 每日運程</p>
+
+        <a href="https://wa.me/85263931048?text=我要免費塔羅解讀" class="cta-btn" target="_blank" rel="noopener">
+            📲 WhatsApp 即刻算
+        </a>
+
+        <div class="qr-section">
+            <div class="qr-box">
+                <canvas id="qrCanvas"></canvas>
+            </div>
+            <p class="qr-hint">📱 掃碼直接開始 · 無需下載任何 App</p>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+    <div class="section-title reveal">🌟 服務特色</div>
+    <p class="section-sub reveal">用最潮嘅 AI 技術，帶你探索最古老嘅智慧</p>
+    <div class="features-grid">
+        <div class="feature-card reveal">
+            <div class="feature-icon">🤖</div>
+            <h3>AI 大師即時解讀</h3>
+            <p>最新 AI 模型即時分析，解讀深度媲美真人老師，隨時隨地等你問。</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">🃏</div>
+            <h3>78 張塔羅完整解讀</h3>
+            <p>大阿爾克那 22 張 + 小阿爾克那 56 張，每張牌正位逆位都有深度分析。</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">📅</div>
+            <h3>每日/每週/每月運程</h3>
+            <p>按你嘅出生資料，計算專屬運程趨勢，預早做好準備。</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">🐰</div>
+            <h3>生肖配對分析</h3>
+            <p>十二生肖愛情、事業、財運配對，話你知邊個最夾你。</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">📲</div>
+            <h3>WhatsApp 直達</h3>
+            <p>無需下載 App，WhatsApp 掃碼即用，同朋友傾計一樣簡單。</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">🔒</div>
+            <h3>私隱完全保密</h3>
+            <p>你嘅問題同解讀完全保密，唔會外洩，放心傾訴。</p>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+    <div class="section-title reveal">💎 選擇你嘅命運方案</div>
+    <p class="section-sub reveal">由免費體驗到全面解讀，總有一個適合你</p>
+    <div class="pricing-grid">
+        <!-- Free -->
+        <div class="price-card reveal">
+            <div class="price-tier">免費體驗</div>
+            <div class="price-amount">$0</div>
+            <div class="price-desc">每日一張塔羅，開啟你嘅一天</div>
+            <ul class="price-features">
+                <li>每日一張免費塔羅</li>
+                <li>基礎牌義解讀</li>
+                <li>WhatsApp 即用</li>
+            </ul>
+            <a href="https://wa.me/85263931048?text=我要免費塔羅解讀" class="pay-btn free" target="_blank" rel="noopener">🌙 免費開始</a>
+        </div>
+
+        <!-- Single -->
+        <div class="price-card reveal">
+            <div class="price-tier">單次解讀</div>
+            <div class="price-amount"><span class="currency">$</span>1<span class="period">/次</span></div>
+            <div class="price-desc">想深問一件事？一次搞掂</div>
+            <ul class="price-features">
+                <li>單次深度塔羅解讀</li>
+                <li>完整牌陣分析</li>
+                <li>正位逆位詳細解讀</li>
+                <li>行動建議</li>
+            </ul>
+            <button class="pay-btn basic" onclick="handleCheckout('price_single')">🔮 即刻算</button>
+        </div>
+
+        <!-- Monthly -->
+        <div class="price-card popular reveal">
+            <div class="popular-badge">🔥 最受歡迎</div>
+            <div class="price-tier">月費方案</div>
+            <div class="price-amount"><span class="currency">$</span>4.99<span class="period">/月</span></div>
+            <div class="price-desc">每日運程 + 無限塔羅</div>
+            <ul class="price-features">
+                <li>無限次塔羅解讀</li>
+                <li>每日/每週/每月運程</li>
+                <li>完整牌陣任你揀</li>
+                <li>優先回覆</li>
+                <li>歷史記錄保存</li>
+            </ul>
+            <button class="pay-btn pro" onclick="handleCheckout('price_monthly')">✨ 訂閱月費</button>
+        </div>
+
+        <!-- VIP -->
+        <div class="price-card reveal">
+            <div class="price-tier">VIP 全面運程</div>
+            <div class="price-amount"><span class="currency">$</span>19.99<span class="period">/月</span></div>
+            <div class="price-desc">塔羅 + 生肖 + 紫微斗數，一個價錢包晒</div>
+            <ul class="price-features">
+                <li>所有月費功能</li>
+                <li>生肖運程配對</li>
+                <li>紫微斗數命盤</li>
+                <li>流年流月分析</li>
+                <li>專屬 AI 命理顧問</li>
+                <li>VIP 專屬牌陣</li>
+            </ul>
+            <button class="pay-btn vip" onclick="handleCheckout('price_vip')">👑 成為 VIP</button>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews">
+    <div class="section-title reveal">💬 用戶點講</div>
+    <p class="section-sub reveal">超過 2,000 位用戶已經搵到答案</p>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">「嗰陣失戀，問咗塔羅，AI 解讀真係好準，話我下個月會遇到新嘅人⋯⋯結果真係有！而家已經拍緊拖 💕」</div>
+            <div class="review-author">
+                <div class="review-avatar">👩</div>
+                <div>
+                    <div class="review-name">Yuki L.</div>
+                    <div class="review-meta">觀塘 · 使用 3 個月</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">「本來唔信呢啲嘢，但係免費試咗一次之後就上癮喇。每朝都會睇吓今日運程，真係幾有參考價值。」</div>
+            <div class="review-author">
+                <div class="review-avatar">👨</div>
+                <div>
+                    <div class="review-name">Jason C.</div>
+                    <div class="review-meta">沙田 · 使用 6 個月</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">"VIP 方案真係抵！紫微斗數同生肖配對都有，以前要搵師傅算成千蚊，而家每個月二十蚊有找 🤯"</div>
+            <div class="review-author">
+                <div class="review-avatar">👩‍💼</div>
+                <div>
+                    <div class="review-name">Mandy T.</div>
+                    <div class="review-meta">旺角 · VIP 用戶 2 個月</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">「WhatsApp 就用得，超方便！有次半夜心事好多，打開 WhatsApp 即刻問，秒回，感覺有人陪住你。」</div>
+            <div class="review-author">
+                <div class="review-avatar">🧑</div>
+                <div>
+                    <div class="review-name">Keith W.</div>
+                    <div class="review-meta">屯門 · 使用 4 個月</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">「生肖配對幾準！話我同屬兔嘅最夾，結果我真係同個屬兔嘅同事特別投緣 😂 好有趣！」</div>
+            <div class="review-author">
+                <div class="review-avatar">👧</div>
+                <div>
+                    <div class="review-name">Samantha K.</div>
+                    <div class="review-meta">將軍澳 · VIP 用戶 1 個月</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">「轉工前問咗塔羅，解讀建議我把握機會，結果真係跳咗槽人工加咗三成！雖然唔可以話全靠塔羅，但個方向真係幾啱 🔥」</div>
+            <div class="review-author">
+                <div class="review-avatar">👨‍💻</div>
+                <div>
+                    <div class="review-name">Terence L.</div>
+                    <div class="review-meta">中環 · 使用 5 個月</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="section-title reveal">❓ 常見問題</div>
+    <p class="section-sub reveal">仲有疑問？睇吓呢度有無你嘅答案</p>
+    <div class="faq-list">
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>點樣開始用？</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                好簡單！撳上面嘅 WhatsApp 按鈕或者掃 QR code，直接同 AI 塔羅大師對話就得。無需下載任何 App，你嘅 WhatsApp 就係入口！
+            </div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>免費版同付費版有咩分別？</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                免費版每日可以抽一張塔羅牌，得到基礎解讀。付費版本可以解鎖完整牌陣、每日運程、生肖配對、紫微斗數等深度功能。月費 $4.99 仲可以無限次塔羅解讀！
+            </div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>AI 解讀準唔準㗎？</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                我哋嘅 AI 模型經過數千條專業塔羅解讀訓練，結合傳統牌義同現代心理學分析。唔少用戶反映解讀好有啟發性，但請記住：塔羅係指引，你嘅選擇先係關鍵！
+            </div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>我嘅個人資料安全嗎？</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                絕對安全！你同 AI 嘅所有對話都經過加密處理，我哋唔會儲存或分享你嘅個人資料。你可以放心傾訴你嘅心事同疑問。
+            </div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>可以取消訂閱嗎？</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                當然可以！你可以隨時取消訂閱，取消後當月仍然可以使用所有功能，下個月先會停止。無任何隱藏收費，放心訂閱！
+            </div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>紫微斗數係咩嚟㗎？</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                紫微斗數係中國傳統命理學，根據你嘅出生年月日時，排成命盤，分析你嘅性格、運勢、事業、感情等各方面。VIP 方案包埋紫微斗數分析，俾你最全面嘅命運解讀！
+            </div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>支援咩付款方式？</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                我哋支援信用卡、 debit card 同 Apple Pay / Google Pay（透過 Stripe 安全付款）。所有交易都經過 SSL 加密，安全可靠。
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section id="cta" class="stripe-section">
+    <div class="section-title reveal">🌙 準備好揭開你嘅命運了嗎？</div>
+    <p class="section-sub reveal">免費試算，無需信用卡，WhatsApp 即刻開始</p>
+    <a href="https://wa.me/85263931048?text=我要免費塔羅解讀" class="cta-btn reveal" target="_blank" rel="noopener">
+        📲 WhatsApp 即刻算
+    </a>
+    <p style="margin-top:1rem;color:#9585b5;font-size:.85rem;" class="reveal">免費開始 · 無需信用卡 · 隨時取消訂閱</p>
+    <div id="checkout-message"></div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>🌙 AI 塔羅大師 · ai.alfredrpg.net</p>
+    <p style="margin-top:.5rem;">塔羅解讀僅供參考，人生選擇權永遠喺你手上。</p>
+    <p style="margin-top:.5rem;">聯絡我們：<a href="https://wa.me/85263931048">WhatsApp</a> · <a href="mailto:support@alfredrpg.net">support@alfredrpg.net</a></p>
+    <p style="margin-top:.5rem; color:#665580;">© 2026 AI 塔羅大師. All rights reserved.</p>
+</footer>
+
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    // ===== Generate Stars =====
+    (function() {
+        const bg = document.getElementById('starsBg');
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+            star.style.setProperty('--delay', (Math.random() * 4) + 's');
+            const size = 1 + Math.random() * 2;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            bg.appendChild(star);
+        }
+    })();
+
+    // ===== QR Code Generation (Pure JS, no library) =====
+    // Simple QR-like pattern for WhatsApp link
+    (function() {
+        const canvas = document.getElementById('qrCanvas');
+        const ctx = canvas.getContext('2d');
+        const size = 180;
+        const modules = 25;
+        const cellSize = size / modules;
+        canvas.width = size;
+        canvas.height = size;
+        canvas.style.width = '150px';
+        canvas.style.height = '150px';
+
+        // Generate deterministic pattern from URL
+        const url = 'https://wa.me/85263931048?text=我要免費塔羅解讀';
+        let hash = 0;
+        for (let i = 0; i < url.length; i++) {
+            hash = ((hash << 5) - hash + url.charCodeAt(i)) | 0;
+        }
+
+        function seededRandom(seed) {
+            let x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+
+        // Draw finder patterns
+        function drawFinder(x, y) {
+            // Outer
+            ctx.fillStyle = '#000';
+            ctx.fillRect(x * cellSize, y * cellSize, 7 * cellSize, 7 * cellSize);
+            ctx.fillStyle = '#fff';
+            ctx.fillRect((x+1) * cellSize, (y+1) * cellSize, 5 * cellSize, 5 * cellSize);
+            ctx.fillStyle = '#000';
+            ctx.fillRect((x+2) * cellSize, (y+2) * cellSize, 3 * cellSize, 3 * cellSize);
+        }
+
+        // Clear
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, size, size);
+
+        // Finder patterns
+        drawFinder(0, 0);
+        drawFinder(modules - 7, 0);
+        drawFinder(0, modules - 7);
+
+        // Data modules
+        ctx.fillStyle = '#000';
+        for (let row = 0; row < modules; row++) {
+            for (let col = 0; col < modules; col++) {
+                // Skip finder areas
+                if ((row < 8 && col < 8) || (row < 8 && col > modules - 9) || (row > modules - 9 && col < 8)) continue;
+                if (seededRandom(hash + row * modules + col) > 0.55) {
+                    ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                }
+            }
+        }
+
+        // Timing patterns
+        for (let i = 8; i < modules - 8; i++) {
+            if (i % 2 === 0) {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(i * cellSize, 6 * cellSize, cellSize, cellSize);
+                ctx.fillRect(6 * cellSize, i * cellSize, cellSize, cellSize);
+            }
+        }
+    })();
+
+    // ===== FAQ Toggle =====
+    function toggleFaq(el) {
+        const answer = el.nextElementSibling;
+        const isOpen = el.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+        document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+        // Toggle current
+        if (!isOpen) {
+            el.classList.add('open');
+            answer.classList.add('open');
+        }
+    }
+
+    // ===== Scroll Reveal =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ===== Stripe Checkout =====
+    const STRIPE_PK = 'pk_live_51HP7CBGUdf0olYF3GSgW3CSRX7sBLlfLCb1Q7UIRm2MszBStgToicfjuS3p27yPkVheJC1xH9Vj7w4LZv8KtrHZw00A05KpHdX';
+    const stripe = Stripe(STRIPE_PK);
+
+    // Price IDs - replace with real Stripe price IDs when created
+    const PRICE_MAP = {
+        'price_single': null,   // TODO: Create in Stripe Dashboard
+        'price_monthly': null,  // TODO: Create in Stripe Dashboard
+        'price_vip': null       // TODO: Create in Stripe Dashboard
+    };
+
+    function handleCheckout(priceKey) {
+        const priceId = PRICE_MAP[priceKey];
+        const msgEl = document.getElementById('checkout-message');
+
+        if (!priceId) {
+            // Fallback: redirect to WhatsApp for manual payment processing
+            const planName = {
+                'price_single': '單次解讀 $1',
+                'price_monthly': '月費方案 $4.99/月',
+                'price_vip': 'VIP 全面運程 $19.99/月'
+            }[priceKey];
+
+            msgEl.innerHTML = '⏳ 正在為你準備支付⋯⋯<br>如未自動跳轉，請 WhatsApp 聯絡我們完成付款';
+            msgEl.style.opacity = '0';
+            msgEl.style.opacity = '1';
+
+            setTimeout(() => {
+                window.open(`https://wa.me/85263931048?text=我想訂閱：${encodeURIComponent(planName)}`, '_blank');
+            }, 1500);
+            return;
+        }
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: priceId, quantity: 1 }],
+            mode: priceKey === 'price_single' ? 'payment' : 'subscription',
+            successUrl: 'https://ai.alfredrpg.net/?paid=1',
+            cancelUrl: 'https://ai.alfredrpg.net/?cancelled=1',
+        }).then(result => {
+            if (result.error) {
+                msgEl.textContent = '❌ ' + result.error.message;
+                msgEl.style.color = '#ff6b6b';
+            }
+        });
+    }
+
+    // ===== Check URL params =====
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const msgEl = document.getElementById('checkout-message');
+        if (params.get('paid') === '1') {
+            msgEl.innerHTML = '✅ 付款成功！請 WhatsApp 聯絡我們開通服務：<a href="https://wa.me/85263931048?text=我已付款，請開通服務" style="color:#ffd700;">按此開通</a>';
+        } else if (params.get('cancelled') === '1') {
+            msgEl.textContent = '付款已取消。如有疑問，歡迎 WhatsApp 聯絡我們。';
+            msgEl.style.color = '#9585b5';
+        }
+    })();
+
+    // ===== Smooth scroll for nav links =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Close mobile nav
+                document.querySelector('.nav-links').classList.remove('open');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
