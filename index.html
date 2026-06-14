@@ -678,22 +678,29 @@
         'vip': { name: 'VIP 全面運程', price: 'HK$158/月', whatsapp: '我要訂閱 VIP 全面運程（HK$158/月）' }
     };
 
+    function copyToClipboard(text, label) {
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.getElementById('copy-' + label);
+            if (btn) { btn.textContent = '✅ 已複制'; setTimeout(() => { btn.textContent = '📋 複制'; }, 2000); }
+        });
+    }
+
     function handleFPS(planKey) {
         const plan = PLANS[planKey];
         const msgEl = document.getElementById('checkout-message');
 
         // Show payment options
         msgEl.innerHTML = `
-            🔄 ${plan.name} 付款方式：
+            🔄 <b>${plan.name}</b> 付款方式：
             <br><br>
             <b>💰 FPS 轉數快</b><br>
-            <code style="color:#ffd700">${FPS_PHONE}</code>
+            <code style="color:#ffd700">${FPS_PHONE}</code> <button id="copy-fps" onclick="copyToClipboard('${FPS_PHONE}','fps')" style="background:none;border:1px solid #ffd700;color:#ffd700;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:0.8em">📋 複制</button>
             <br><br>
-            <b>🪙 USDT (TRC-20)</b><br>
-            <code style="color:#ffd700;font-size:0.85em">${CRYPTO_ADDRESSES['USDT TRC-20']}</code>
+            <b>🪙 USDT (TRC-20)</b> <small>手續費低</small><br>
+            <code style="color:#ffd700;font-size:0.8em;word-break:break-all">${CRYPTO_ADDRESSES['USDT TRC-20']}</code> <button id="copy-usdt" onclick="copyToClipboard('${CRYPTO_ADDRESSES['USDT TRC-20']}','usdt')" style="background:none;border:1px solid #ffd700;color:#ffd700;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:0.8em">📋 複制</button>
             <br><br>
             <b>🪙 USDC (ERC-20)</b><br>
-            <code style="color:#ffd700;font-size:0.85em">${CRYPTO_ADDRESSES['USDC ERC-20']}</code>
+            <code style="color:#ffd700;font-size:0.8em;word-break:break-all">${CRYPTO_ADDRESSES['USDC ERC-20']}</code> <button id="copy-usdc" onclick="copyToClipboard('${CRYPTO_ADDRESSES['USDC ERC-20']}','usdc')" style="background:none;border:1px solid #ffd700;color:#ffd700;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:0.8em">📋 複制</button>
             <br><br>
             <small>付款後 WhatsApp 截圖確認即可開通 ⚡</small>
         `;
@@ -702,7 +709,7 @@
         // Redirect to WhatsApp after showing info
         setTimeout(() => {
             window.open(`https://wa.me/85263609349?text=${encodeURIComponent(plan.whatsapp)}`, '_blank');
-        }, 2000);
+        }, 3000);
     }
 
     // ===== Check URL params =====
