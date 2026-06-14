@@ -17,7 +17,8 @@
 
 ## 收款方式
 - **FPS 轉數快**：+852-63931048
-- **USDT/USDC**：Metamask（待提供地址）
+- **USDT (TRC-20)**：TC4JcN1NSx87GZsCz5f5eJzfzu22shWBze（推薦，手續費低）
+- **USDC (ERC-20)**：0xb5c5e0f560a76ffaa9358342ce9a57a707ec70c2
 
 ## WhatsApp 對口
 - **+852 6360 9349**（呀鬼 Alfred）

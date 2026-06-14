@@ -48,7 +48,8 @@
 
 付款方式：
 💰 FPS 轉數快：+852-63931048
-🪙 USDT/USDC：[待提供]
+🪙 USDT (TRC-20)：TC4JcN1NSx87GZsCz5f5eJzfzu22shWBze
+🪙 USDC (ERC-20)：0xb5c5e0f560a76ffaa9358342ce9a57a707ec70c2
 
 付款後傳送截圖，即時開通！」
 

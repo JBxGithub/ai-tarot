@@ -529,7 +529,7 @@
                 <span class="arrow">▼</span>
             </div>
             <div class="faq-a">
-                我哋支援 FPS 轉數快即時過數，即轉即開通，無需信用卡。WhatsApp 發送付款截圖即可，簡單方便。
+                我哋支援 FPS 轉數快同 USDT/USDC 加密貨幣即時過數，即轉即開通，無需信用卡。WhatsApp 發送付款截圖即可，簡單方便。
             </div>
         </div>
     </div>
@@ -668,6 +668,10 @@
 
     // ===== FPS Payment =====
     const FPS_PHONE = '+852 6393 1048';
+    const CRYPTO_ADDRESSES = {
+        'USDT TRC-20': 'TC4JcN1NSx87GZsCz5f5eJzfzu22shWBze',
+        'USDC ERC-20': '0xb5c5e0f560a76ffaa9358342ce9a57a707ec70c2'
+    };
     const PLANS = {
         'single': { name: '單次解讀', price: 'HK$8', whatsapp: '我要單次塔羅解讀（HK$8）' },
         'monthly': { name: '月費方案', price: 'HK$38/月', whatsapp: '我要訂閱月費方案（HK$38/月）' },
@@ -678,14 +682,27 @@
         const plan = PLANS[planKey];
         const msgEl = document.getElementById('checkout-message');
 
-        // Show processing message
-        msgEl.innerHTML = `🔄 正在為你準備 ${plan.name} 付款⋯⋯<br><small>請透過 WhatsApp 完成 FPS 轉數快付款</small>`;
+        // Show payment options
+        msgEl.innerHTML = `
+            🔄 ${plan.name} 付款方式：
+            <br><br>
+            <b>💰 FPS 轉數快</b><br>
+            <code style="color:#ffd700">${FPS_PHONE}</code>
+            <br><br>
+            <b>🪙 USDT (TRC-20)</b><br>
+            <code style="color:#ffd700;font-size:0.85em">${CRYPTO_ADDRESSES['USDT TRC-20']}</code>
+            <br><br>
+            <b>🪙 USDC (ERC-20)</b><br>
+            <code style="color:#ffd700;font-size:0.85em">${CRYPTO_ADDRESSES['USDC ERC-20']}</code>
+            <br><br>
+            <small>付款後 WhatsApp 截圖確認即可開通 ⚡</small>
+        `;
         msgEl.style.color = '#ffd700';
 
-        // Redirect to WhatsApp with payment instructions
+        // Redirect to WhatsApp after showing info
         setTimeout(() => {
-            window.open(`https://wa.me/85263609349?text=${encodeURIComponent(plan.whatsapp + ' — FPS 轉數快付款至 ' + FPS_PHONE)}`, '_blank');
-        }, 800);
+            window.open(`https://wa.me/85263609349?text=${encodeURIComponent(plan.whatsapp)}`, '_blank');
+        }, 2000);
     }
 
     // ===== Check URL params =====
