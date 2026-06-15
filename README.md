@@ -1,41 +1,52 @@
-# AI 塔羅大師 — WhatsApp 即時算命服務
+# 🔮 月娘塔羅 — AI Tarot Business
 
-🔮 AI 塔羅大師 — WhatsApp 直達 AI 算命服務
+> ⚠️ **敏感資料（帳號密碼、收費模型、人設細節）全部記錄在 `CREDENTIALS.md`，唔會 commit 到 Git。**
 
-## 核心概念
-- WhatsApp 掃碼 → AI 即時塔羅解讀 → FPS 付款升級
-- 完全自動化，24/7 運作
-- 粵語/國語雙語
+## 快速參考
 
-## 收費模式
-| 層級 | 價格 | 兣容 |
-|------|------|------|
-| 免費 | $0 | 每日一張塔羅 |
-| 單次 | HK$8 | 一次完整解讀 |
-| 月費 | HK$38/月 | 每日運程 + 無限塔羅 |
-| VIP | HK$158/月 | 全面運程（塔羅+生肖+紫微） |
+| 項目 | 值 |
+|------|-----|
+| **IG 帳號** | `tarot.bymoonhk` |
+| **人設名** | 月娘（Yuet Leung） |
+| **項目位置** | `03-PROJECTS/ai-tarot/` |
+| **敏感資料** | 見 `CREDENTIALS.md`（已 gitignore） |
 
-## 收款方式
-- **FPS 轉數快**：+852-63931048
-- **USDT (TRC-20)**：TC4JcN1NSx87GZsCz5f5eJzfzu22shWBze（推薦，手續費低）
-- **USDC (ERC-20)**：0xb5c5e0f560a76ffaa9358342ce9a57a707ec70c2
+## 文件結構
 
-## WhatsApp 對口
-- **+852 6360 9349**（呀鬼 Alfred）
+```
+03-PROJECTS/ai-tarot/
+├── README.md              — 本文件（無敏感資料）
+├── CREDENTIALS.md         — 帳號密碼收費等敏感資料（gitignore）
+├── agent_prompt.md         — 月娘人設 + OpenClaw agent prompt v2.0
+├── PRODUCT_DESIGN.md       — 產品設計文檔
+├── index.html              — 網站首頁
+├── tarot_data.json         — 塔羅牌數據
+├── init_db.py              — PostgreSQL 初始化
+├── CNAME                   — ai.alfredrpg.net
+├── worker.js               — Cloudflare Worker
+├── _redirects              — Cloudflare redirects
+└── assets/
+    └── yuet_leung_profile.jpg  — 月娘頭像
+```
 
-## 域名
-- **alfredrpg.net/tarot** → 主域名 path
-- **jbxgithub.github.io/ai-tarot/** → GitHub Pages
+## ⚠️ 紅線
 
-## 技術架構
-- OpenClaw Agent（核心 AI 引擎）
-- WhatsApp Adapter（用戶入口：+85263609349）
-- FPS 轉數快（付款處理）
-- Cron Job（每日運程推送）
-- PostgreSQL（用戶數據 + 付費記錄）
+- **絕對唔可以透露 AI 身份** — 月娘係真人塔羅師
+- **回覆必須有延遲** — 3-15分鐘，禁止秒回
+- **分段回覆** — 先確認問題→再解牌→再補充
+- **服務時間 10am-12am** — 凌晨唔回覆
+- **敏感資料唔寫入 MEMORY.md** — 全部放 CREDENTIALS.md
 
-## 啟動日期
-- 2026-06-14：項目啟動
-- 2026-06-14：MVP 網站上線
-- 待定：OpenClaw Agent 塔羅 prompt 設定
-- 待定：WhatsApp 自動回覆流程
+## 下一步
+
+- [x] Gmail 開通
+- [x] IG 帳號開通 + Bio 設定
+- [x] agent_prompt v2.0
+- [x] 頭像保存到本地
+- [ ] 上傳大頭貼照（需手機 app）
+- [ ] IG 轉 Creator 帳號
+- [ ] Facebook Developer + Instagram Graph API
+- [ ] Instagram MCP 配置
+- [ ] 首篇 IG post
+- [ ] OpenClaw 塔羅 agent cron job
+- [ ] 每日運程自動化
